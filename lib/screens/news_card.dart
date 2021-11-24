@@ -50,6 +50,7 @@ class NewsCard extends StatelessWidget {
                       Text(
                         'By Zachariah Kelly',
                       ),
+                      SizedBox(height: 5.0),
                       Text(
                         '2021-11-24 06:14:06',
                       ),
