@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class NewsCard extends StatelessWidget {
-  NewsCard({required this.color, required this.headline});
+  NewsCard({required this.headline, required this.image});
 
-  final Color color;
   final String headline;
+  final AssetImage image;
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +31,8 @@ class NewsCard extends StatelessWidget {
                 padding: const EdgeInsets.all(14.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
-                  image: const DecorationImage(
-                    image: AssetImage('images/test.jpg'),
+                  image: DecorationImage(
+                    image: image,
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -56,7 +56,7 @@ class NewsCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Icon(Icons.share),
                   Icon(Icons.bookmark),
                 ],

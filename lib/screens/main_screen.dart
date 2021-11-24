@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:news_peek/screens/background_card.dart';
+import 'package:news_peek/screens/headline_card.dart';
 import 'package:news_peek/screens/news_card.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+List images = ['images/test0.jpg', 'images/test1.jpg', 'images/test2.jpg'];
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -9,6 +15,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  int imageIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -16,6 +23,44 @@ class _MainScreenState extends State<MainScreen> {
         body: Scrollbar(
           child: ListView(
             children: <Widget>[
+              Container(
+                height: MediaQuery.of(context).size.height / 2.1,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    BackgroundCard(
+                      image: AssetImage(images[imageIndex]),
+                    ),
+                    Positioned(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CarouselSlider(
+                            options: CarouselOptions(
+                                viewportFraction: 1,
+                                height:
+                                    MediaQuery.of(context).size.height / 2.3,
+                                onPageChanged: (index, reason) =>
+                                    setState(() => imageIndex = index)),
+                            items: images.map(
+                              (image) {
+                                return Builder(
+                                  builder: (BuildContext context) {
+                                    return HeadlineCard(
+                                      image: AssetImage(image),
+                                    );
+                                  },
+                                );
+                              },
+                            ).toList(),
+                          ),
+                          CircleIndicator(),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               const Text(
                 'Breaking News',
                 style: TextStyle(
@@ -24,22 +69,31 @@ class _MainScreenState extends State<MainScreen> {
               ),
               ListView.separated(
                 shrinkWrap: true,
-                itemCount: 10,
+                itemCount: 3,
                 scrollDirection: Axis.vertical,
                 controller: ScrollController(initialScrollOffset: 0),
                 separatorBuilder: (BuildContext context, int index) =>
                     const SizedBox(height: 10.0),
                 itemBuilder: (BuildContext context, int index) {
                   return NewsCard(
-                      color: Colors.yellow,
+                      image: AssetImage(images[index]),
                       headline:
                           'Headline ${index + 1} this is a samoke headline, headline');
                 },
               ),
+              SizedBox(height: 10.0),
             ],
           ),
         ),
       ),
     );
   }
+
+  Widget CircleIndicator() => AnimatedSmoothIndicator(
+        activeIndex: imageIndex,
+        count: images.length,
+        effect: WormEffect(
+          dotHeight: 6.0,
+        ),
+      );
 }
