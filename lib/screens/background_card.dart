@@ -16,13 +16,24 @@ class BackgroundCard extends StatelessWidget {
       ),
       child: BackdropFilter(
         filter: ImageFilter.blur(
-          sigmaX: 15,
-          sigmaY: 15,
+          sigmaX: 10.0,
+          sigmaY: 10.0,
         ),
         child: Container(
-          color: Colors.black.withOpacity(0.2),
+          decoration: BoxDecoration(
+            color: Colors.grey.shade200.withOpacity(0.2),
+          ),
         ),
       ),
     );
   }
 }
+
+// BackdropFilter(
+// filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0,),
+// child: Container(
+// width: 200.0,
+// height: 200.0,
+// decoration: BoxDecoration(
+// color: Colors.grey.shade200.withOpacity(0.5)
+// ),

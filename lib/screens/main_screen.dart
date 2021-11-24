@@ -24,47 +24,66 @@ class _MainScreenState extends State<MainScreen> {
           child: ListView(
             children: <Widget>[
               Container(
-                height: MediaQuery.of(context).size.height / 2.1,
+                height: MediaQuery.of(context).size.height / 2,
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    BackgroundCard(
-                      image: AssetImage(images[imageIndex]),
+                    ClipRRect(
+                      borderRadius: const BorderRadius.vertical(
+                        bottom: Radius.circular(32),
+                      ),
+                      child: BackgroundCard(
+                        image: AssetImage(images[imageIndex]),
+                      ),
                     ),
                     Positioned(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CarouselSlider(
-                            options: CarouselOptions(
-                                viewportFraction: 1,
-                                height:
-                                    MediaQuery.of(context).size.height / 2.3,
-                                onPageChanged: (index, reason) =>
-                                    setState(() => imageIndex = index)),
-                            items: images.map(
-                              (image) {
-                                return Builder(
-                                  builder: (BuildContext context) {
-                                    return HeadlineCard(
-                                      image: AssetImage(image),
-                                    );
-                                  },
-                                );
-                              },
-                            ).toList(),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(32),
+                            bottomRight: Radius.circular(32),
                           ),
-                          CircleIndicator(),
-                        ],
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CarouselSlider(
+                              options: CarouselOptions(
+                                  viewportFraction: 1,
+                                  height:
+                                      MediaQuery.of(context).size.height / 2.2,
+                                  onPageChanged: (index, reason) =>
+                                      setState(() => imageIndex = index)),
+                              items: images.map(
+                                (image) {
+                                  return Builder(
+                                    builder: (BuildContext context) {
+                                      return HeadlineCard(
+                                        image: AssetImage(image),
+                                      );
+                                    },
+                                  );
+                                },
+                              ).toList(),
+                            ),
+                            CircleIndicator(),
+                          ],
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
-              const Text(
-                'Breaking News',
-                style: TextStyle(
-                  fontSize: 25.0,
+              SizedBox(height: 25.0),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                ),
+                child: const Text(
+                  'Breaking News',
+                  style: TextStyle(
+                    fontSize: 25.0,
+                  ),
                 ),
               ),
               ListView.separated(
@@ -93,7 +112,7 @@ class _MainScreenState extends State<MainScreen> {
         activeIndex: imageIndex,
         count: images.length,
         effect: WormEffect(
-          dotHeight: 6.0,
+          dotHeight: 8.0,
         ),
       );
 }
