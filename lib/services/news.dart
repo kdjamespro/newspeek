@@ -1,6 +1,7 @@
 import 'package:news_peek/services/network.dart';
+import 'package:news_peek/secrets.dart';
 
-const String apiKey = 'b722609ab79140eab9f1db413da081e5';
+const String apiKey = newsAPIKey;
 const websiteUrl = 'https://newsapi.org/v2';
 
 class NewsModel {
