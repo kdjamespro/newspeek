@@ -26,7 +26,7 @@ class NewsCard extends StatelessWidget {
                 ),
                 margin: const EdgeInsets.symmetric(
                   horizontal: 20.0,
-                  vertical: 5.0,
+                  vertical: 10.0,
                 ),
                 padding: const EdgeInsets.all(14.0),
                 decoration: BoxDecoration(

@@ -13,19 +13,31 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            Text('Breaking News'),
-            const SizedBox(width: 40.0),
-            NewsCard(
-                color: Colors.yellow,
-                headline: 'Headline1 this is a samoke headline, headline'),
-            NewsCard(
-              color: Colors.blue,
-              headline: 'Headline2 this is a samoke headline, headline',
-            ),
-          ],
+        body: Scrollbar(
+          child: ListView(
+            children: <Widget>[
+              const Text(
+                'Breaking News',
+                style: TextStyle(
+                  fontSize: 25.0,
+                ),
+              ),
+              ListView.separated(
+                shrinkWrap: true,
+                itemCount: 10,
+                scrollDirection: Axis.vertical,
+                controller: ScrollController(initialScrollOffset: 0),
+                separatorBuilder: (BuildContext context, int index) =>
+                    const SizedBox(height: 10.0),
+                itemBuilder: (BuildContext context, int index) {
+                  return NewsCard(
+                      color: Colors.yellow,
+                      headline:
+                          'Headline ${index + 1} this is a samoke headline, headline');
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
