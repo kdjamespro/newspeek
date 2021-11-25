@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:news_peek/screens/background_card.dart';
+import 'package:news_peek/screens/cov_tracker.dart';
 import 'package:news_peek/screens/headline_card.dart';
 import 'package:news_peek/screens/news_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:news_peek/screens/profile_screen.dart';
+import 'package:news_peek/screens/search_screen.dart';
+import 'package:news_peek/screens/weather_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 List images = ['images/test0.jpg', 'images/test1.jpg', 'images/test2.jpg'];
@@ -16,6 +20,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int imageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
