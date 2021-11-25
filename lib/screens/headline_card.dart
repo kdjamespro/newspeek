@@ -10,7 +10,7 @@ class HeadlineCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
-      widthFactor: 0.95,
+      widthFactor: 1,
       child: Container(
         margin: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
@@ -43,21 +43,3 @@ class HeadlineCard extends StatelessWidget {
     );
   }
 }
-
-// boxShadow: [
-// BoxShadow(
-// color: Colors.black.withOpacity(0.3),
-// spreadRadius: 5,
-// blurRadius: 10,
-// offset: Offset(0, 5),
-// ),
-// ]
-
-// BackdropFilter(
-// filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-// child: Container(
-// width: 200.0,
-// height: 200.0,
-// decoration: BoxDecoration(
-// color: Colors.grey.shade200.withOpacity(0.5)
-// ),

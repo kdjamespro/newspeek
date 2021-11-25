@@ -24,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
           child: ListView(
             children: <Widget>[
               Container(
-                height: MediaQuery.of(context).size.height / 2,
+                height: MediaQuery.of(context).size.height / 2.1,
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
@@ -74,7 +74,7 @@ class _MainScreenState extends State<MainScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 25.0),
+              SizedBox(height: 20.0),
               Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20.0,
