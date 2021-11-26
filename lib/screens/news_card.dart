@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:news_peek/model/article.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class NewsCard extends StatelessWidget {
-  NewsCard({required this.headline, required this.image});
+  NewsCard({required this.article});
 
-  final String headline;
-  final AssetImage image;
+  final Article article;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class NewsCard extends StatelessWidget {
                 child: Align(
                   alignment: FractionalOffset.bottomLeft,
                   child: Text(
-                    headline,
+                    article.title,
                     style: const TextStyle(
                       fontSize: 25.0,
                     ),
@@ -32,7 +33,9 @@ class NewsCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
                   image: DecorationImage(
-                    image: image,
+                    image: article.imageUrl == 'No Image'
+                        ? AssetImage('images/test0.jpg') as ImageProvider
+                        : CachedNetworkImageProvider(article.imageUrl),
                     fit: BoxFit.fill,
                   ),
                 ),

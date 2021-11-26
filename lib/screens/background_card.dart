@@ -4,7 +4,7 @@ import 'dart:ui';
 class BackgroundCard extends StatelessWidget {
   BackgroundCard({required this.image});
 
-  final AssetImage image;
+  final NetworkImage image;
   @override
   Widget build(BuildContext context) {
     return Container(
