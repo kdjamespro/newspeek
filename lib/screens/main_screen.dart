@@ -20,13 +20,18 @@ class MainScreen extends StatefulWidget {
   _MainScreenState createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainScreenState extends State<MainScreen>
+    with AutomaticKeepAliveClientMixin {
   int imageIndex = 0;
-  NewsModel generator = NewsModel();
-  var news;
+  late NewsModel generator;
+  late Future<List<Article>> news;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
+    generator = NewsModel();
     news = generator.getCountryHeadlines('ph');
     super.initState();
   }

@@ -18,13 +18,28 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int imageIndex = 0;
-  int _selectedIndex = 2;
+  late int _selectedIndex;
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = 2;
+    _pageController = PageController(initialPage: _selectedIndex);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   final screens = [Weather(), Search(), MainScreen(), Cov_Tracker(), Profile()];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      _pageController.jumpToPage(index);
     });
   }
 
@@ -35,7 +50,11 @@ class _MyAppState extends State<MyApp> {
       title: 'Flutter Demo',
       theme: ThemeData(),
       home: Scaffold(
-        body: screens[_selectedIndex],
+        body: PageView(
+          controller: _pageController,
+          physics: NeverScrollableScrollPhysics(),
+          children: screens,
+        ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.white,
