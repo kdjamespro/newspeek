@@ -20,7 +20,7 @@ class Article {
 
   factory Article.fromJson(Map<String, dynamic> json) {
     String author = json['author'] ?? 'Unknown Author';
-    String title = json['title'] ?? 'No Title';
+    String title = json['title'].trim() ?? 'No Title';
     String description = json['description'] ?? 'No Description';
     String url = json['url'] ?? 'No URL';
     String imageUrl = json['urlToImage'] ?? 'No Image';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:news_peek/model/article.dart';
-import 'package:news_peek/screens/background_card.dart';
 import 'package:news_peek/screens/cov_tracker.dart';
 import 'package:news_peek/screens/headline_card.dart';
 import 'package:news_peek/screens/news_card.dart';
@@ -15,7 +14,7 @@ import 'package:news_peek/utilities/fonts.dart';
 List images = ['images/test0.jpg', 'images/test1.jpg', 'images/test2.jpg'];
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  MainScreen({Key? key}) : super(key: key);
 
   @override
   _MainScreenState createState() => _MainScreenState();

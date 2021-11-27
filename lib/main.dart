@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:news_peek/screens/cov_tracker.dart';
@@ -6,8 +7,15 @@ import 'package:news_peek/screens/main_screen.dart';
 import 'package:news_peek/screens/profile_screen.dart';
 import 'package:news_peek/screens/search_screen.dart';
 import 'package:news_peek/screens/weather_screen.dart';
+import 'dart:io' show Platform;
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (Platform.isAndroid) {
+    await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
+  }
+
   runApp(const MyApp());
 }
 

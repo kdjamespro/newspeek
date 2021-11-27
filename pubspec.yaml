@@ -38,6 +38,7 @@ dependencies:
   cached_network_image: ^3.1.0+1
   google_nav_bar: ^5.0.5
   line_icons: ^2.0.0
+  flutter_inappwebview: ^5.3.2
 
 dev_dependencies:
   flutter_test:
