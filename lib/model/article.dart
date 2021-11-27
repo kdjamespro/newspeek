@@ -42,6 +42,17 @@ class Article {
       content: content,
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'source': source,
+        'author': author,
+        'title': title,
+        'description': description,
+        'url': url,
+        'imageUrl': imageUrl,
+        'publishedAt': publishedAt,
+        'content': content,
+      };
 }
 
 class Source {
@@ -54,4 +65,9 @@ class Source {
     String name = source['name'] ?? 'No Name';
     return Source(id: id, name: name);
   }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+      };
 }

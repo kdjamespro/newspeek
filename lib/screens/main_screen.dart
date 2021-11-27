@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:news_peek/model/article.dart';
+import 'package:news_peek/model/bookmark.dart';
 import 'package:news_peek/screens/cov_tracker.dart';
 import 'package:news_peek/screens/headline_card.dart';
 import 'package:news_peek/screens/news_card.dart';
@@ -45,10 +48,10 @@ class _MainScreenState extends State<MainScreen>
           builder:
               (BuildContext context, AsyncSnapshot<List<Article>> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else {
               if (snapshot.hasError) {
-                return Center(child: Text('Cannot Load the Data'));
+                return const Center(child: Text('Cannot Load the Data'));
               } else {
                 List<Article> articles = snapshot.data ?? [];
                 List<Article> headlines = articles.sublist(0, 3);
