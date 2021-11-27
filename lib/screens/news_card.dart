@@ -13,7 +13,7 @@ class NewsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: AspectRatio(
-        aspectRatio: 3 / 2,
+        aspectRatio: 4/3,
         child: Card(
           margin: const EdgeInsets.symmetric(
             horizontal: 8.0,
@@ -60,20 +60,25 @@ class NewsCard extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'By ${article.author}',
-                          softWrap: false,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        SizedBox(height: 5.0),
-                        Text(
-                          article.publishedAt,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                            overflow:TextOverflow.ellipsis,
+                            strutStyle: StrutStyle(fontSize: 10),
+                            text: TextSpan(
+                              style: TextStyle(color: Colors.black),
+                              text:  'By: ${article.author}',
+                            )
+                          ),
+                          SizedBox(height: 5.0),
+                          Text(
+                            article.publishedAt,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
                     ),
                     const Spacer(),
                     Icon(Icons.share),
