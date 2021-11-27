@@ -21,10 +21,14 @@ class Article {
   factory Article.fromJson(Map<String, dynamic> json) {
     String author = json['author'] ?? 'Unknown Author';
     String title = json['title'] ?? 'No Title';
-    String description = json['author'] ?? 'No Description';
+    String description = json['description'] ?? 'No Description';
     String url = json['url'] ?? 'No URL';
     String imageUrl = json['urlToImage'] ?? 'No Image';
     String publishedAt = json['publishedAt'] ?? 'No Time';
+    if (publishedAt != 'No Time') {
+      publishedAt = publishedAt.replaceFirst('T', ' ');
+      publishedAt = publishedAt.substring(0, publishedAt.length - 1);
+    }
     String content = json['content'] ?? 'No Content';
 
     return Article(

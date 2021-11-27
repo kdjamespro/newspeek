@@ -10,6 +10,7 @@ import 'package:news_peek/screens/search_screen.dart';
 import 'package:news_peek/screens/weather_screen.dart';
 import 'package:news_peek/services/news.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:news_peek/utilities/fonts.dart';
 
 List images = ['images/test0.jpg', 'images/test1.jpg', 'images/test2.jpg'];
 
@@ -107,11 +108,9 @@ class _MainScreenState extends State<MainScreen>
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20.0,
                         ),
-                        child: const Text(
+                        child: Text(
                           'Breaking News',
-                          style: TextStyle(
-                            fontSize: 25.0,
-                          ),
+                          style: labelTitle,
                         ),
                       ),
                       ListView.separated(
@@ -122,7 +121,7 @@ class _MainScreenState extends State<MainScreen>
                         separatorBuilder: (BuildContext context, int index) =>
                             const SizedBox(height: 10.0),
                         itemBuilder: (BuildContext context, int index) {
-                          return NewsCard(article: articles[index + 2]);
+                          return NewsCard(article: articles[index + 3]);
                         },
                       ),
                       SizedBox(height: 10.0),

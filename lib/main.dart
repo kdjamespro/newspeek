@@ -41,7 +41,11 @@ class _MyAppState extends State<MyApp> {
   void _onItemTapped(int index) async {
     setState(() {
       _selectedIndex = index;
-      _pageController.jumpToPage(index);
+      _pageController.animateToPage(
+        index,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.ease,
+      );
     });
   }
 
@@ -57,44 +61,43 @@ class _MyAppState extends State<MyApp> {
           physics: NeverScrollableScrollPhysics(),
           children: screens,
         ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-          child: GNav(
-            backgroundColor: Colors.white,
-            activeColor: Colors.black,
-            tabBorderRadius: 25,
-            tabActiveBorder: Border.all(color: Colors.black, width: 1),
-            tabMargin: EdgeInsets.symmetric(vertical: 12.0),
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            iconSize: 24,
-            gap: 8,
-            curve: Curves.easeInSine,
-            duration: Duration(milliseconds: 400),
-            selectedIndex: _selectedIndex,
-            tabs: const [
-              GButton(
-                icon: LineIcons.cloud,
-                text: 'Weather',
-              ),
-              GButton(
-                icon: LineIcons.search,
-                text: 'Search',
-              ),
-              GButton(
-                icon: LineIcons.home,
-                text: 'Home',
-              ),
-              GButton(
-                icon: LineIcons.biohazard,
-                text: 'Covid',
-              ),
-              GButton(
-                icon: LineIcons.user,
-                text: 'User',
-              ),
-            ],
-            onTabChange: _onItemTapped,
-          ),
+        bottomNavigationBar: GNav(
+          color: Colors.grey[600],
+          tabBackgroundColor: Colors.grey.shade900,
+          backgroundColor: const Color(0xff121212),
+          activeColor: Colors.white,
+          tabBorderRadius: 25,
+          //          tabActiveBorder: Border.all(color: Colors.black, width: 1),
+          tabMargin: EdgeInsets.symmetric(vertical: 12.0),
+          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          iconSize: 24,
+          gap: 8,
+          curve: Curves.easeInSine,
+          duration: Duration(milliseconds: 400),
+          selectedIndex: _selectedIndex,
+          tabs: const [
+            GButton(
+              icon: LineIcons.cloud,
+              text: 'Weather',
+            ),
+            GButton(
+              icon: LineIcons.search,
+              text: 'Search',
+            ),
+            GButton(
+              icon: LineIcons.home,
+              text: 'Home',
+            ),
+            GButton(
+              icon: LineIcons.biohazard,
+              text: 'Covid',
+            ),
+            GButton(
+              icon: LineIcons.user,
+              text: 'User',
+            ),
+          ],
+          onTabChange: _onItemTapped,
         ),
       ),
     );

@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_peek/model/article.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:news_peek/utilities/fonts.dart';
 
 class HeadlineCard extends StatelessWidget {
   HeadlineCard({required this.article});
@@ -35,11 +36,7 @@ class HeadlineCard extends StatelessWidget {
             margin: const EdgeInsets.all(10.0),
             child: Text(
               article.title,
-              style: GoogleFonts.oswald(
-                color: Colors.black,
-                fontSize: 25,
-                fontWeight: FontWeight.w600,
-              ),
+              style: headerTitle,
             ),
           ),
         ),
