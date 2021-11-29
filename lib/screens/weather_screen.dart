@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:news_peek/screens/weather/currentWeather.dart';
+import 'package:news_peek/screens/weather/models/location.dart';
+
+void main() {
+  runApp(Weather());
+}
 
 class Weather extends StatelessWidget {
-  const Weather({Key? key}) : super(key: key);
+  List<Location> locations = [
+    new Location(city: "manila", country: "philippines", lat: "14.6042", lon: "120.9822")
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body: Container(
-            child: Center(
-                child: Text(
-              "Weather",
-              style: TextStyle(fontSize: 100),
-            )),
-          ),
-        ),
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      home: CurrentWeatherPage(locations, context),
     );
   }
 }
+
+

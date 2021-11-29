@@ -39,7 +39,6 @@ class _MainScreenState extends State<MainScreen>
     super.initState();
   }
 
-  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -105,14 +104,17 @@ class _MainScreenState extends State<MainScreen>
                           ],
                         ),
                       ),
-                      SizedBox(height: 20.0),
+                      const SizedBox(height: 20.0),
                       Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20.0,
                         ),
-                        child: Text(
+                        child: const Text(
                           'Breaking News',
-                          style: labelTitle,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                          ),
                         ),
                       ),
                       ListView.separated(
@@ -126,7 +128,7 @@ class _MainScreenState extends State<MainScreen>
                           return NewsCard(article: articles[index + 3]);
                         },
                       ),
-                      SizedBox(height: 10.0),
+                      const SizedBox(height: 10.0),
                     ],
                   ),
                 );
@@ -141,7 +143,7 @@ class _MainScreenState extends State<MainScreen>
   Widget CircleIndicator() => AnimatedSmoothIndicator(
         activeIndex: imageIndex,
         count: images.length,
-        effect: WormEffect(
+        effect: const WormEffect(
           dotHeight: 8.0,
         ),
       );
