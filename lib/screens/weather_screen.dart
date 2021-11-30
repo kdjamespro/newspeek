@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_peek/screens/weather/currentWeather.dart';
+import 'package:news_peek/screens/weather/current_weather.dart';
 import 'package:news_peek/screens/weather/models/location.dart';
 
 void main() {
@@ -8,7 +8,8 @@ void main() {
 
 class Weather extends StatelessWidget {
   List<Location> locations = [
-    new Location(city: "manila", country: "philippines", lat: "14.6042", lon: "120.9822")
+    new Location(
+        city: "manila", country: "philippines", lat: "14.6042", lon: "120.9822")
   ];
 
   @override
@@ -22,5 +23,3 @@ class Weather extends StatelessWidget {
     );
   }
 }
-
-

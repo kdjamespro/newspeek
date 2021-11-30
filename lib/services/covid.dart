@@ -1,13 +1,17 @@
+import '../model/global_cases.dart';
 import 'package:news_peek/services/network.dart';
+import 'dart:convert';
 
-const url = 'covid-19-data.p.rapidapi.com';
-const apiKey = 'b2d91ac521msh2d446e82eb70713p1e765bjsnf9c422874477';
+const url = 'https://disease.sh/v3/covid-19';
 
 class CovidModel {
-  Future<dynamic> getLatestByCountry(String country) {
-    NetworkHelper getter =
-        NetworkHelper('$url/country?name=$country&apiKey=$apiKey');
-    var report = getter.getData();
-    return report;
+  // Get Covid Cases by Country
+  Future<GlobalCases> getLatestWorldWide() async {
+    NetworkHelper getter = NetworkHelper('$url/all');
+    var report = await getter.getData();
+    Map<String, dynamic> data = await jsonDecode(report);
+    print(data);
+    GlobalCases ww = GlobalCases.fromJson(data);
+    return ww;
   }
 }

@@ -10,35 +10,34 @@ import 'package:intl/intl.dart';
 class CurrentWeatherPage extends StatefulWidget {
   final List<Location> locations;
   final BuildContext context;
-  const CurrentWeatherPage(this.locations, this.context);
+  CurrentWeatherPage(this.locations, this.context, {Key? key})
+      : super(key: key);
 
   @override
   _CurrentWeatherPageState createState() =>
       _CurrentWeatherPageState(this.locations, this.context);
 }
 
-class _CurrentWeatherPageState extends State<CurrentWeatherPage> {
+class _CurrentWeatherPageState extends State<CurrentWeatherPage>
+    with AutomaticKeepAliveClientMixin {
   final List<Location> locations;
   final Location location;
   final BuildContext context;
-  _CurrentWeatherPageState(List<Location> locations, BuildContext context)
-      : this.locations = locations,
-        this.context = context,
-        this.location = locations[0];
+  _CurrentWeatherPageState(this.locations, this.context)
+      : location = locations[0];
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey[100],
-        body:
-        ListView(
-            children: <Widget>[
-              currentWeatherViews(this.locations, this.location, this.context),
-              forecastViewsHourly(this.location),
-              forecastViewsDaily(this.location),
-            ]
-        )
-    );
+        body: ListView(children: <Widget>[
+          currentWeatherViews(locations, location, this.context),
+          forecastViewsHourly(location),
+          forecastViewsDaily(location),
+        ]));
   }
 }
 
@@ -107,10 +106,12 @@ Widget forecastViewsDaily(Location location) {
   );
 }
 
-Widget createAppBar(List<Location> locations, Location location, BuildContext context) {
+Widget createAppBar(
+    List<Location> locations, Location location, BuildContext context) {
   return Container(
       padding: const EdgeInsets.only(left: 20, top: 15, bottom: 15, right: 20),
-      margin: const EdgeInsets.only(top: 35, left: 15.0, bottom: 15.0, right: 15.0),
+      margin:
+          const EdgeInsets.only(top: 35, left: 15.0, bottom: 15.0, right: 15.0),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(60)),
@@ -121,8 +122,7 @@ Widget createAppBar(List<Location> locations, Location location, BuildContext co
               blurRadius: 7,
               offset: Offset(0, 3),
             )
-          ]
-      ),
+          ]),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -132,23 +132,22 @@ Widget createAppBar(List<Location> locations, Location location, BuildContext co
                 TextSpan(
                     text: '${location.city.capitalizeFirstOfEach}, ',
                     style:
-                    TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                 TextSpan(
                     text: '${location.country.capitalizeFirstOfEach}',
-                    style: TextStyle(
-                        fontWeight: FontWeight.normal, fontSize: 16)),
+                    style:
+                        TextStyle(fontWeight: FontWeight.normal, fontSize: 16)),
               ],
             ),
           ),
-          Icon(
+          const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: Colors.black,
             size: 24.0,
             semanticLabel: 'Tap to change location',
           ),
         ],
-      )
-  );
+      ));
 }
 
 Widget weatherDetailsBox(Weather _weather) {
@@ -170,76 +169,73 @@ Widget weatherDetailsBox(Weather _weather) {
       children: [
         Expanded(
             child: Column(
-              children: [
-                Container(
-                    child: Text(
-                      "Wind",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12,
-                          color: Colors.grey),
-                    )),
-                Container(
-                    child: Text(
-                      "${_weather.wind} km/h",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 15,
-                          color: Colors.black),
-                    ))
-              ],
-            )
-        ),
+          children: [
+            Container(
+                child: Text(
+              "Wind",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                  color: Colors.grey),
+            )),
+            Container(
+                child: Text(
+              "${_weather.wind} km/h",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 15,
+                  color: Colors.black),
+            ))
+          ],
+        )),
         Expanded(
             child: Column(
-              children: [
-                Container(
-                    child: Text(
-                      "Humidity",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12,
-                          color: Colors.grey),
-                    )),
-                Container(
-                    child: Text(
-                      "${_weather.humidity.toInt()}%",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 15,
-                          color: Colors.black),
-                    ))
-              ],
-            )
-        ),
+          children: [
+            Container(
+                child: Text(
+              "Humidity",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                  color: Colors.grey),
+            )),
+            Container(
+                child: Text(
+              "${_weather.humidity.toInt()}%",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 15,
+                  color: Colors.black),
+            ))
+          ],
+        )),
         Expanded(
             child: Column(
-              children: [
-                Container(
-                    child: Text(
-                      "Pressure",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12,
-                          color: Colors.grey),
-                    )),
-                Container(
-                    child: Text(
-                      "${_weather.pressure} hPa",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 15,
-                          color: Colors.black),
-                    ))
-              ],
-            )
-        )
+          children: [
+            Container(
+                child: Text(
+              "Pressure",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                  color: Colors.grey),
+            )),
+            Container(
+                child: Text(
+              "${_weather.pressure} hPa",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 15,
+                  color: Colors.black),
+            ))
+          ],
+        ))
       ],
     ),
   );
@@ -268,8 +264,8 @@ Widget weatherBox(Weather _weather) {
         padding: const EdgeInsets.all(15.0),
         margin: const EdgeInsets.all(15.0),
         height: 160.0,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(20))),
+        decoration:
+            BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20))),
         child: Row(
           children: [
             Expanded(
@@ -277,38 +273,37 @@ Widget weatherBox(Weather _weather) {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      getWeatherIcon(_weather.icon),
-                      Container(
-                          margin: const EdgeInsets.all(5.0),
-                          child: Text(
-                            "${_weather.description.capitalizeFirstOfEach}",
-                            style: TextStyle(
-                                fontWeight: FontWeight.normal,
-                                fontSize: 16,
-                                color: Colors.white),
-                          )),
-                      Container(
-                          margin: const EdgeInsets.all(5.0),
-                          child: Text(
-                            "H:${_weather.high.toInt()}° L:${_weather.low.toInt()}°",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                fontWeight: FontWeight.normal,
-                                fontSize: 13,
-                                color: Colors.white),
-                          )),
-                    ])),
+                  getWeatherIcon(_weather.icon),
+                  Container(
+                      margin: const EdgeInsets.all(5.0),
+                      child: Text(
+                        "${_weather.description.capitalizeFirstOfEach}",
+                        style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 16,
+                            color: Colors.white),
+                      )),
+                  Container(
+                      margin: const EdgeInsets.all(5.0),
+                      child: Text(
+                        "H:${_weather.high.toInt()}° L:${_weather.low.toInt()}°",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 13,
+                            color: Colors.white),
+                      )),
+                ])),
             Column(children: <Widget>[
               Container(
                   child: Text(
-                    "${_weather.temp.toInt()}°",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 60,
-                        color: Colors.white),
-                  )
-              ),
+                "${_weather.temp.toInt()}°",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 60,
+                    color: Colors.white),
+              )),
               Container(
                   margin: const EdgeInsets.all(0),
                   child: Text(
@@ -416,17 +411,17 @@ Widget dailyBoxes(Forecast _forecast) {
                 child: Row(children: [
                   Expanded(
                       child: Text(
-                        "${getDateFromTimestamp(_forecast.daily[index].dt)}",
-                        style: TextStyle(fontSize: 14, color: Colors.black),
-                      )),
+                    "${getDateFromTimestamp(_forecast.daily[index].dt)}",
+                    style: TextStyle(fontSize: 14, color: Colors.black),
+                  )),
                   Expanded(
                       child: getWeatherIconSmall(_forecast.daily[index].icon)),
                   Expanded(
                       child: Text(
-                        "${_forecast.daily[index].high.toInt()}/${_forecast.daily[index].low.toInt()}",
-                        textAlign: TextAlign.right,
-                        style: TextStyle(fontSize: 14, color: Colors.grey),
-                      )),
+                    "${_forecast.daily[index].high.toInt()}/${_forecast.daily[index].low.toInt()}",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(fontSize: 14, color: Colors.grey),
+                  )),
                 ]));
           }));
 }
@@ -461,7 +456,8 @@ Future getCurrentWeather(Location location) async {
   Weather? weather;
   String city = location.city;
   String apiKey = "24a19635acd2766d3e7f999be30b6ef4";
-  var url = "https://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey&units=metric";
+  var url =
+      "https://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey&units=metric";
 
   final response = await http.get(Uri.parse(url));
 
@@ -488,5 +484,3 @@ Future getForecast(Location location) async {
 
   return forecast;
 }
-
-
