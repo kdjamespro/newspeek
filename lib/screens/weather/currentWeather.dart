@@ -29,7 +29,6 @@ class _CurrentWeatherPageState extends State<CurrentWeatherPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[100],
         body:
         ListView(
             children: <Widget>[
