@@ -65,9 +65,11 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(),
       home: Scaffold(
         body: PageView(
+          physics: const AlwaysScrollableScrollPhysics(),
           controller: _pageController,
-          physics: NeverScrollableScrollPhysics(),
+          scrollDirection: Axis.horizontal,
           children: screens,
+          onPageChanged: _onItemTapped,
         ),
         bottomNavigationBar: GNav(
           color: Colors.grey[600],
