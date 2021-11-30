@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import '../model/covid_cases.dart';
 import '../utilities/fonts.dart';
 import 'package:intl/intl.dart';
 
 class CasesCard extends StatelessWidget {
-  CasesCard({required this.top, Key? key});
+  CasesCard({required this.top, required this.cases, Key? key});
 
   Widget top;
+  CovidCases cases;
 
   @override
   Widget build(BuildContext context) {
-    var formatter = NumberFormat('#,###,000');
+    var formatter = NumberFormat('#,###,###');
     return Card(
       margin: const EdgeInsets.symmetric(
         horizontal: 15.0,
@@ -30,24 +32,24 @@ class CasesCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 numbers(
-                  cases: formatter.format(1254464),
+                  cases: formatter.format(cases.cases),
                   title: 'Total Cases',
                   style: totalCasesFig,
-                  newCases: formatter.format(54821),
+                  newCases: formatter.format(cases.todayCases),
                   newStyle: totalCasesNewFig,
                 ),
                 numbers(
-                  cases: formatter.format(1000000),
+                  cases: formatter.format(cases.deaths),
                   title: 'Deaths',
                   style: deathsFig,
-                  newCases: formatter.format(4821),
+                  newCases: formatter.format(cases.todayDeaths),
                   newStyle: deathsNewFig,
                 ),
                 numbers(
-                  cases: formatter.format(9999999),
+                  cases: formatter.format(cases.recovered),
                   title: 'Recovered',
                   style: recoveredFig,
-                  newCases: formatter.format(123821),
+                  newCases: formatter.format(cases.todayRecovered),
                   newStyle: recoveredNewFig,
                 ),
               ],
