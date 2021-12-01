@@ -118,36 +118,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-// BottomNavigationBar(
-// type: BottomNavigationBarType.fixed,
-// backgroundColor: Colors.white,
-// showSelectedLabels: false,
-// showUnselectedLabels: false,
-// items: const <BottomNavigationBarItem>[
-// BottomNavigationBarItem(
-// icon: Icon(Icons.cloud),
-// label: 'Weather',
-// ),
-// BottomNavigationBarItem(
-// icon: Icon(Icons.search),
-// label: 'Search',
-// ),
-// BottomNavigationBarItem(
-// icon: Icon(Icons.home_filled),
-// label: 'Home',
-// ),
-// BottomNavigationBarItem(
-// icon: Icon(Icons.coronavirus),
-// label: 'Virus',
-// ),
-// BottomNavigationBarItem(
-// icon: Icon(Icons.person),
-// label: 'Profile',
-// ),
-// ],
-// currentIndex: _selectedIndex,
-// selectedItemColor: Colors.black,
-// unselectedItemColor: Colors.grey,
-// onTap: _onItemTapped,
-// ),

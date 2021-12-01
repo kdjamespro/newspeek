@@ -161,12 +161,3 @@ class _SearchState extends State<Search> with SingleTickerProviderStateMixin {
         ),
       );
 }
-
-// List.generate(
-// categories.length,
-// (index) {
-// return Container(
-// child: Text('$index'),
-// );
-// },
-// ),
