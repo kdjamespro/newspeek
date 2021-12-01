@@ -20,7 +20,8 @@ class HeadlineCard extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: article.imageUrl == 'No Image'
-                  ? AssetImage('images/test0.jpg') as ImageProvider
+                  ? const AssetImage('images/not_available.png')
+                      as ImageProvider
                   : CachedNetworkImageProvider(article.imageUrl),
               fit: BoxFit.cover,
             ),

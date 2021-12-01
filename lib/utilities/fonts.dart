@@ -25,6 +25,18 @@ final labelTitle = GoogleFonts.playfairDisplay(
   fontWeight: FontWeight.bold,
 );
 
+final labelCategories = GoogleFonts.openSans(
+  color: Colors.black,
+  fontSize: 19,
+  fontWeight: FontWeight.bold,
+);
+
+final unselectedLabelCategories = GoogleFonts.openSans(
+  color: Colors.black,
+  fontSize: 18,
+  fontWeight: FontWeight.normal,
+);
+
 final covidTitle = GoogleFonts.openSans(
   color: Colors.white,
   fontSize: 18,

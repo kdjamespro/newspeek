@@ -151,15 +151,22 @@ class NewsCard extends StatelessWidget {
                     vertical: 10.0,
                   ),
                   padding: const EdgeInsets.all(14.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    image: DecorationImage(
-                      image: article.imageUrl == 'No Image'
-                          ? AssetImage('images/test0.jpg') as ImageProvider
-                          : CachedNetworkImageProvider(article.imageUrl),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
+                  child: article.imageUrl == 'No Image'
+                      ? Image.asset('images/not_available.png')
+                      : CachedNetworkImage(
+                          imageUrl: article.imageUrl,
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              image: DecorationImage(
+                                  image: imageProvider, fit: BoxFit.cover),
+                            ),
+                          ),
+                          placeholder: (context, url) =>
+                              CircularProgressIndicator(),
+                          errorWidget: (context, url, error) =>
+                              Icon(Icons.error),
+                        ),
                 ),
               ),
               Container(

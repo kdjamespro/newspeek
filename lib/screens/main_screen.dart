@@ -119,7 +119,7 @@ class _MainScreenState extends State<MainScreen>
                       ),
                       ListView.separated(
                         shrinkWrap: true,
-                        itemCount: 10,
+                        itemCount: articles.length < 10 ? articles.length : 13,
                         scrollDirection: Axis.vertical,
                         controller: ScrollController(initialScrollOffset: 0),
                         separatorBuilder: (BuildContext context, int index) =>
