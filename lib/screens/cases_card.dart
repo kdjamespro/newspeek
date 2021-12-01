@@ -4,10 +4,11 @@ import '../utilities/fonts.dart';
 import 'package:intl/intl.dart';
 
 class CasesCard extends StatelessWidget {
-  CasesCard({required this.top, required this.cases, Key? key});
+  CasesCard({required this.top, required this.cases, this.chart, Key? key});
 
-  Widget top;
-  CovidCases cases;
+  final Widget top;
+  final CovidCases cases;
+  final Widget? chart;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +25,13 @@ class CasesCard extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(5)),
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             top,
-            SizedBox(height: 15),
+            const SizedBox(height: 10),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 numbers(
                   cases: formatter.format(cases.cases),
@@ -38,6 +40,7 @@ class CasesCard extends StatelessWidget {
                   newCases: formatter.format(cases.todayCases),
                   newStyle: totalCasesNewFig,
                 ),
+                Spacer(),
                 numbers(
                   cases: formatter.format(cases.deaths),
                   title: 'Deaths',
@@ -45,6 +48,7 @@ class CasesCard extends StatelessWidget {
                   newCases: formatter.format(cases.todayDeaths),
                   newStyle: deathsNewFig,
                 ),
+                Spacer(),
                 numbers(
                   cases: formatter.format(cases.recovered),
                   title: 'Recovered',
@@ -54,6 +58,7 @@ class CasesCard extends StatelessWidget {
                 ),
               ],
             ),
+            chart ?? const SizedBox(),
           ],
         ),
       ),

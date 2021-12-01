@@ -5,6 +5,7 @@ import 'package:news_peek/model/covid_cases.dart';
 import 'package:news_peek/services/covid.dart';
 import '../screens/cases_card.dart';
 import '../utilities/fonts.dart';
+import 'package:pie_chart/pie_chart.dart';
 
 class Cov_Tracker extends StatefulWidget {
   const Cov_Tracker({Key? key}) : super(key: key);
@@ -120,14 +121,16 @@ class _Cov_TrackerState extends State<Cov_Tracker>
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
-                  return countryCard(CovidCases(
-                      cases: 0,
-                      todayCases: 0,
-                      deaths: 0,
-                      todayDeaths: 0,
-                      recovered: 0,
-                      todayRecovered: 0,
-                      updated: 'No updates'));
+                  return countryCard(
+                      CovidCases(
+                          cases: 0,
+                          todayCases: 0,
+                          deaths: 0,
+                          todayDeaths: 0,
+                          recovered: 0,
+                          todayRecovered: 0,
+                          updated: 'No updates'),
+                      null);
                 } else {
                   CovidCases country = snapshot.data ??
                       CovidCases(
@@ -138,17 +141,38 @@ class _Cov_TrackerState extends State<Cov_Tracker>
                           recovered: 0,
                           todayRecovered: 0,
                           updated: 'No updates');
-                  return countryCard(country);
+                  Map<String, double> data = {
+                    "deaths": country.deaths.toDouble(),
+                    "cases": country.cases.toDouble(),
+                    "recovered": country.recovered.toDouble(),
+                  };
+                  return countryCard(
+                      country,
+                      Container(
+                        margin: EdgeInsets.only(top: 20.0, bottom: 10),
+                        child: PieChart(
+                          dataMap: data,
+                          chartRadius: MediaQuery.of(context).size.width / 4,
+                          chartType: ChartType.ring,
+                          chartLegendSpacing: 60.0,
+                          chartValuesOptions: const ChartValuesOptions(
+                            showChartValueBackground: false,
+                            showChartValuesInPercentage: true,
+                            showChartValues: false,
+                            showChartValuesOutside: true,
+                          ),
+                        ),
+                      ));
                 }
               },
-            )
+            ),
           ],
         )),
       ),
     );
   }
 
-  Widget countryCard(CovidCases country) {
+  Widget countryCard(CovidCases country, Widget? chart) {
     return CasesCard(
       top: Center(
         child: CountryListPick(
@@ -170,6 +194,63 @@ class _Cov_TrackerState extends State<Cov_Tracker>
         ),
       ),
       cases: country,
+      chart: chart,
     );
   }
+
+  // List<PieChartSectionData> pieSections(CovidCases country) {
+  //   return List.generate(3, (i) {
+  //     final fontSize = 10.0;
+  //     final radius = 80.0;
+  //     final total = country.cases.toDouble();
+  //     final deaths = country.deaths.toDouble();
+  //     final recovered = country.recovered.toDouble();
+  //     switch (i) {
+  //       case 0:
+  //         return PieChartSectionData(
+  //           color: const Color(0xff0293ee),
+  //           value: (total - deaths - recovered) / total,
+  //           radius: radius,
+  //           title: 'cases',
+  //           titleStyle: TextStyle(
+  //             fontSize: fontSize,
+  //             fontWeight: FontWeight.bold,
+  //             color: const Color(0xffffffff),
+  //           ),
+  //         );
+  //       case 1:
+  //         return PieChartSectionData(
+  //           color: const Color(0xfff8b250),
+  //           value: deaths / total,
+  //           radius: radius,
+  //           titleStyle: TextStyle(
+  //               fontSize: fontSize,
+  //               fontWeight: FontWeight.bold,
+  //               color: const Color(0xffffffff)),
+  //         );
+  //       case 2:
+  //         return PieChartSectionData(
+  //           color: const Color(0xff845bef),
+  //           value: recovered / total,
+  //           radius: radius,
+  //           titleStyle: TextStyle(
+  //               fontSize: fontSize,
+  //               fontWeight: FontWeight.bold,
+  //               color: const Color(0xffffffff)),
+  //         );
+  //       default:
+  //         throw Error();
+  //     }
+  //   });
+  // }
 }
+
+// return countryCard(
+//     country,
+//     );
+//
+// PieChart(PieChartData(
+// sections: pieSections(country),
+// centerSpaceRadius: 0,
+// sectionsSpace: 1,
+// ));
