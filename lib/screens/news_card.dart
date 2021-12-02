@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_peek/model/article.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:news_peek/services/network.dart';
 import 'package:news_peek/utilities/fonts.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:share/share.dart';
 
 class NewsCard extends StatelessWidget {
   NewsCard({required this.article});
@@ -23,7 +25,7 @@ class NewsCard extends StatelessWidget {
         );
       },
       child: AspectRatio(
-        aspectRatio: 4 / 3,
+        aspectRatio: 3.7 / 3,
         child: Card(
           margin: const EdgeInsets.symmetric(
             horizontal: 8.0,
@@ -76,31 +78,60 @@ class NewsCard extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(
                   horizontal: 20.0,
                 ),
-                child: Row(
-                  children: [
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          RichText(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 18),
+                  child: Row(
+                    children: [
+                      Flexible(
+                        flex: 4,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            RichText(
+                                overflow: TextOverflow.ellipsis,
+                                text: TextSpan(
+                                  style: articleDetails,
+                                  text: 'By ${article.author}',
+                                )),
+                            SizedBox(height: 5.0),
+                            Text(
+                              dateTimeFormatter(article.publishedAt),
                               overflow: TextOverflow.ellipsis,
-                              text: TextSpan(
-                                style: articleDetails,
-                                text: 'By ${article.author}',
-                              )),
-                          SizedBox(height: 5.0),
-                          Text(
-                            article.publishedAt,
-                            overflow: TextOverflow.ellipsis,
-                            style: articleDetails,
-                          ),
-                        ],
+                              style: articleDetails,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    const Spacer(),
-                    Icon(Icons.share),
-                    Icon(Icons.bookmark),
-                  ],
+                      const Spacer(),
+                      SizedBox(
+                        width: 80,
+                      ),
+                      GestureDetector(
+                          onTap: () {
+                            NetworkHelper link = NetworkHelper(article.url);
+                            String message = link.url;
+                            // 'Look at this wonderful app! \n https://github.com/londonappbrewery/dicee-flutter.git';
+                            RenderBox box =
+                                context.findRenderObject() as RenderBox;
+                            Share.share(message,
+                                subject: 'This is a subject message',
+                                sharePositionOrigin:
+                                    box.localToGlobal(Offset.zero) & box.size);
+                          },
+                          child: Icon(
+                            Icons.share,
+                            size: 20,
+                          )),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      GestureDetector(
+                          onTap: () {
+                            dateTimeFormatter(article.publishedAt);
+                          },
+                          child: Icon(Icons.bookmark_outline_outlined)),
+                    ],
+                  ),
                 ),
               )
             ],
@@ -108,5 +139,92 @@ class NewsCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String dateTimeFormatter(String publishInfo) {
+    //Date and Time together (Military time)
+    String dateTimeInfo = article.publishedAt;
+
+    //Splitting date and time
+    String date = dateTimeInfo.split(" ")[0];
+    String time = dateTimeInfo.split(" ")[1];
+
+    //Splitting time
+    String hours = time.split(":")[0];
+    String minutes = time.split(":")[1];
+    String seconds = time.split(":")[2];
+    int hourInt = int.parse(hours);
+    String formattedTime = "";
+
+    //
+    if (hourInt > 12) {
+      hourInt = hourInt - 12;
+      hours = hourInt.toString();
+      formattedTime = hours + ":$minutes" + " PM";
+    }
+
+    if (hourInt == 12) {
+      hours = '12';
+      formattedTime = hours + ":$minutes" + " AM";
+    } else {
+      hours = hourInt.toString();
+      formattedTime = hours + ":$minutes" + " AM";
+    }
+
+    //Splitting date
+    String month = date.split("-")[1];
+    String days = (date.split("-")[2]);
+    String years = (date.split("-")[0]);
+    String formattedDate = "";
+
+    if (month == '01') {
+      month = 'Jan ';
+      formattedDate = (month + "$days, " + years + "    " + formattedTime);
+    }
+    if (month == '02') {
+      month = 'Feb ';
+      formattedDate = (month + "$days, " + years + "    " + formattedTime);
+    }
+    if (month == '03') {
+      month = 'Mar ';
+      formattedDate = (month + "$days, " + years + "    " + formattedTime);
+    }
+    if (month == '04') {
+      month = 'Apr ';
+      formattedDate = (month + "$days, " + years + "    " + formattedTime);
+    }
+    if (month == '05') {
+      month = 'May ';
+      formattedDate = (month + "$days, " + years + "    " + formattedTime);
+    }
+    if (month == '06') {
+      month = 'Jun ';
+      formattedDate = (month + "$days, " + years + "    " + formattedTime);
+    }
+    if (month == '07') {
+      month = 'Jul ';
+      formattedDate = (month + "$days, " + years + "    " + formattedTime);
+    }
+    if (month == '08') {
+      month = 'Aug ';
+      formattedDate = (month + "$days, " + years + "    " + formattedTime);
+    }
+    if (month == '09') {
+      month = 'Sept ';
+      formattedDate = (month + "$days, " + years + "    " + formattedTime);
+    }
+    if (month == '10') {
+      month = 'Oct ';
+      formattedDate = (month + "$days, " + years + "    " + formattedTime);
+    }
+    if (month == '11') {
+      month = 'Nov ';
+      formattedDate = (month + "$days, " + years + "    " + formattedTime);
+    }
+    if (month == '12') {
+      month = 'Dec ';
+      formattedDate = (month + "$days, " + years + "    " + formattedTime);
+    }
+    return formattedDate;
   }
 }

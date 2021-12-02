@@ -27,20 +27,34 @@ class HeadlineCard extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(16),
           ),
-          child: Align(
-            alignment: FractionalOffset.bottomLeft,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
+          child: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: <Color>[
+                      Colors.black12.withAlpha(0),
+                      Colors.black12.withAlpha(1),
+                      Colors.black54,
+                      Colors.black87
+                    ],
+                  ),
+                ),
+                child: Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      article.title,
+                      style: sliderHeaderTitle,
+                    ),
+                  ),
+                ),
               ),
-              padding: const EdgeInsets.all(8.0),
-              margin: const EdgeInsets.all(10.0),
-              child: Text(
-                article.title,
-                style: headerTitle,
-              ),
-            ),
+            ],
           ),
         ),
       ),

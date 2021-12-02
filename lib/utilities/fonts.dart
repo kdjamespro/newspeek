@@ -7,6 +7,12 @@ final headerTitle = GoogleFonts.montserrat(
   fontWeight: FontWeight.bold,
 );
 
+final sliderHeaderTitle = GoogleFonts.montserrat(
+  color: Colors.white,
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+);
+
 final articleTitle = GoogleFonts.montserrat(
   color: Colors.black,
   fontSize: 16,

@@ -44,6 +44,8 @@ dependencies:
   intl: ^0.17.0
   country_list_pick: ^1.0.1+5
   pie_chart: ^5.1.0
+  share: ^2.0.4
+
 
 dev_dependencies:
   flutter_test:
