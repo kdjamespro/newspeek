@@ -107,7 +107,7 @@ class _MainScreenState extends State<MainScreen>
                       const SizedBox(height: 20.0),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0,
+                          horizontal: 10.0,
                         ),
                         child: const Text(
                           'Breaking News',

@@ -89,12 +89,12 @@ class _Cov_TrackerState extends State<Cov_Tracker>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Text(
                               'COVID-19 Cases Live Updates',
                               style: covidTitle,
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Text(
                               'Last Update: ${world.updated}',
                               style: covidSubheading,

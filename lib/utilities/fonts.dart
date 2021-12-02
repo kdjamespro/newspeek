@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 final headerTitle = GoogleFonts.montserrat(
   color: Colors.black,
-  fontSize: 16,
-  fontWeight: FontWeight.bold,
+  fontSize: 20,
+  fontWeight: FontWeight.normal,
 );
 
 final sliderHeaderTitle = GoogleFonts.montserrat(
@@ -16,7 +16,7 @@ final sliderHeaderTitle = GoogleFonts.montserrat(
 final articleTitle = GoogleFonts.montserrat(
   color: Colors.black,
   fontSize: 16,
-  fontWeight: FontWeight.bold,
+  fontWeight: FontWeight.normal,
 );
 
 final articleDetails = GoogleFonts.openSans(
