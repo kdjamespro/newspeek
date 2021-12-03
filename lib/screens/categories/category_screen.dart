@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_peek/model/article.dart';
+import 'package:news_peek/model/bookmark_db.dart';
 import 'package:news_peek/services/news.dart';
-
+import 'package:collection/collection.dart';
 import '../news_card.dart';
 
 class CategoryPage extends StatefulWidget {
@@ -16,6 +17,7 @@ class _CategoryPageState extends State<CategoryPage>
     with AutomaticKeepAliveClientMixin {
   late NewsModel generator;
   late Future<List<Article>> news;
+  late List<Article> bookmarks;
 
   @override
   bool get wantKeepAlive => true;
@@ -24,7 +26,18 @@ class _CategoryPageState extends State<CategoryPage>
   void initState() {
     generator = NewsModel();
     news = generator.getCategoryHeadlines(widget.category);
+    getBookmarks();
     super.initState();
+  }
+
+  Future getBookmarks() async {
+    bookmarks = await BookmarkDb.instance.getBookmarks();
+  }
+
+  bool contains(Article article) {
+    var contains =
+        bookmarks.firstWhereOrNull((item) => item.title == article.title);
+    return contains != null;
   }
 
   @override
@@ -39,7 +52,6 @@ class _CategoryPageState extends State<CategoryPage>
               return const Center(child: Text('Cannot Load the Data'));
             } else {
               List<Article> articles = snapshot.data ?? [];
-              List<Article> headlines = articles.sublist(0, 3);
               return Scrollbar(
                 child: ListView(
                   children: <Widget>[
@@ -51,7 +63,9 @@ class _CategoryPageState extends State<CategoryPage>
                       separatorBuilder: (BuildContext context, int index) =>
                           const SizedBox(height: 10.0),
                       itemBuilder: (BuildContext context, int index) {
-                        return NewsCard(article: articles[index + 3]);
+                        return NewsCard(
+                            article: articles[index + 3],
+                            isBookmarked: contains(articles[index + 3]));
                       },
                     ),
                     const SizedBox(height: 10.0),

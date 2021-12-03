@@ -4,7 +4,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import '../screens/cov_tracker.dart';
 import '../screens/main_screen.dart';
-import '../screens/profile_screen.dart';
+import '../screens/bookmarks_screen.dart';
 import '../screens/search_screen.dart';
 import '../screens/weather_screen.dart';
 import 'dart:io' show Platform;
@@ -44,7 +44,13 @@ class _MyAppState extends State<MyApp> {
     super.dispose();
   }
 
-  final screens = [Weather(), Search(), MainScreen(), Cov_Tracker(), Profile()];
+  final screens = [
+    Weather(),
+    Search(),
+    MainScreen(),
+    Cov_Tracker(),
+    Bookmarks()
+  ];
 
   void _onItemTapped(int index) async {
     setState(() {
@@ -107,8 +113,8 @@ class _MyAppState extends State<MyApp> {
               backgroundColor: Colors.pinkAccent,
             ),
             GButton(
-              icon: LineIcons.user,
-              text: 'User',
+              icon: LineIcons.bookmark,
+              text: 'Bookmarks',
               backgroundColor: Colors.deepPurpleAccent,
             ),
           ],

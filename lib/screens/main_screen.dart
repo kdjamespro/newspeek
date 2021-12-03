@@ -1,18 +1,14 @@
 import 'dart:convert';
-
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:news_peek/model/article.dart';
-import 'package:news_peek/model/bookmark.dart';
-import 'package:news_peek/screens/cov_tracker.dart';
+import 'package:news_peek/model/bookmark_db.dart';
 import 'package:news_peek/screens/headline_card.dart';
 import 'package:news_peek/screens/news_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:news_peek/screens/profile_screen.dart';
-import 'package:news_peek/screens/search_screen.dart';
-import 'package:news_peek/screens/weather_screen.dart';
 import 'package:news_peek/services/news.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:news_peek/utilities/fonts.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 List images = ['images/test0.jpg', 'images/test1.jpg', 'images/test2.jpg'];
 
@@ -28,7 +24,7 @@ class _MainScreenState extends State<MainScreen>
   int imageIndex = 0;
   late NewsModel generator;
   late Future<List<Article>> news;
-
+  late List<Article> bookmarks = [];
   @override
   bool get wantKeepAlive => true;
 
@@ -36,7 +32,18 @@ class _MainScreenState extends State<MainScreen>
   void initState() {
     generator = NewsModel();
     news = generator.getCountryHeadlines('ph');
+    getBookmarks();
     super.initState();
+  }
+
+  Future getBookmarks() async {
+    bookmarks = await BookmarkDb.instance.getBookmarks();
+  }
+
+  bool contains(Article article) {
+    var contains =
+        bookmarks.firstWhereOrNull((item) => item.title == article.title);
+    return contains != null;
   }
 
   Widget build(BuildContext context) {
@@ -109,12 +116,9 @@ class _MainScreenState extends State<MainScreen>
                         padding: const EdgeInsets.symmetric(
                           horizontal: 10.0,
                         ),
-                        child: const Text(
+                        child: Text(
                           'Breaking News',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25,
-                          ),
+                          style: headerTitle,
                         ),
                       ),
                       ListView.separated(
@@ -125,7 +129,9 @@ class _MainScreenState extends State<MainScreen>
                         separatorBuilder: (BuildContext context, int index) =>
                             const SizedBox(height: 10.0),
                         itemBuilder: (BuildContext context, int index) {
-                          return NewsCard(article: articles[index + 3]);
+                          return NewsCard(
+                              article: articles[index + 3],
+                              isBookmarked: contains(articles[index + 3]));
                         },
                       ),
                       const SizedBox(height: 10.0),

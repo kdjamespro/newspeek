@@ -1,14 +1,22 @@
 import 'package:flutter/cupertino.dart';
 
+const String articles = 'articles';
+
+class ArticleFields {
+  static final String id = 'id';
+  static final String name = 'name';
+  static final String author = 'author';
+  static final String title = 'title';
+  static final String description = 'description';
+  static final String url = 'url';
+  static final String urlToImage = 'urlToImage';
+  static final String publishedAt = 'publishedAt';
+  static final String content = 'content';
+}
+
 class Article {
   late final Source source;
-  late final String author,
-      title,
-      description,
-      url,
-      imageUrl,
-      publishedAt,
-      content;
+  late String author, title, description, url, imageUrl, publishedAt, content;
 
   Article(
       {required this.source,
@@ -21,6 +29,9 @@ class Article {
       required this.content});
 
   factory Article.fromJson(Map<String, dynamic> json) {
+    Source source = json.containsKey('source')
+        ? Source.fromJson(json['source'])
+        : Source(name: 'No Name', id: 'No id');
     String author = json['author'] ?? 'Unknown Author';
     String title = json['title'].trim() ?? 'No Title';
     String description = json['description'] ?? 'No Description';
@@ -34,7 +45,7 @@ class Article {
     String content = json['content'] ?? 'No Content';
 
     return Article(
-      source: Source.fromJson(json['source']),
+      source: source,
       author: author,
       title: title,
       description: description,
@@ -45,16 +56,17 @@ class Article {
     );
   }
 
-  Map<String, dynamic> toJson() => {
-        'source': source,
-        'author': author,
-        'title': title,
-        'description': description,
-        'url': url,
-        'imageUrl': imageUrl,
-        'publishedAt': publishedAt,
-        'content': content,
-      };
+  Map<String, dynamic> toJson() {
+    return {
+      'author': author,
+      'title': title,
+      'description': description,
+      'url': url,
+      'urlToImage': imageUrl,
+      'publishedAt': publishedAt,
+      'content': content,
+    };
+  }
 }
 
 class Source {

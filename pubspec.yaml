@@ -45,6 +45,8 @@ dependencies:
   country_list_pick: ^1.0.1+5
   pie_chart: ^5.1.0
   share: ^2.0.4
+  sqflite: ^2.0.0+4
+  flutter_svg: ^1.0.0
 
 
 dev_dependencies:
@@ -76,6 +78,7 @@ flutter:
     - images/test2.jpg
     - images/weather_icons/
     - images/not_available.png
+    - images/add_bookmark.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

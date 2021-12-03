@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-final headerTitle = GoogleFonts.montserrat(
+final headerTitle = GoogleFonts.merriweather(
   color: Colors.black,
-  fontSize: 20,
+  fontSize: 25,
+  fontWeight: FontWeight.bold,
+);
+
+final subTitle = GoogleFonts.openSans(
+  color: Colors.grey.shade700,
+  fontSize: 12,
   fontWeight: FontWeight.normal,
 );
 
