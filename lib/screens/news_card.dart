@@ -176,8 +176,22 @@ class _NewsCardState extends State<NewsCard> {
                             widget.updateBookmark == null
                                 ? DoNothingAction()
                                 : widget.updateBookmark!();
+                            final scaffold = ScaffoldMessenger.of(context);
+                            scaffold.showSnackBar(
+                              const SnackBar(
+                                duration: Duration(seconds: 4),
+                                content: Text('Bookmark Removed'),
+                              ),
+                            );
                           } else {
                             addBookmark(widget.article);
+                            final scaffold = ScaffoldMessenger.of(context);
+                            scaffold.showSnackBar(
+                              const SnackBar(
+                                duration: Duration(seconds: 4),
+                                content: Text('Bookmark Added'),
+                              ),
+                            );
                           }
                           setState(
                             () {

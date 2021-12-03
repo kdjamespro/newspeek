@@ -24,6 +24,12 @@ class _CategoryPageState extends State<CategoryPage>
   @override
   bool get wantKeepAlive => true;
 
+  Future updateBookmarks() async {
+    setState(() async {
+      bookmarks = await BookmarkDb.instance.getBookmarks();
+    });
+  }
+
   @override
   void initState() {
     generator = NewsModel();

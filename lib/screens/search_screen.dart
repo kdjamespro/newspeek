@@ -70,58 +70,63 @@ class _SearchState extends State<Search> with SingleTickerProviderStateMixin {
     return SafeArea(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: NestedScrollView(
-          headerSliverBuilder: (context, value) {
-            return [
-              SliverToBoxAdapter(
-                child: searchCard(),
-              ),
-              SliverToBoxAdapter(
-                child: Container(
-                  padding: EdgeInsets.only(left: 10.0, top: 10.0, bottom: 10.0),
-                  alignment: Alignment.centerLeft,
+        home: Scaffold(
+          body: NestedScrollView(
+            headerSliverBuilder: (context, value) {
+              return [
+                SliverToBoxAdapter(
+                  child: searchCard(),
+                ),
+                SliverToBoxAdapter(
                   child: Container(
-                    decoration: BoxDecoration(
+                    padding:
+                        EdgeInsets.only(left: 10.0, top: 10.0, bottom: 10.0),
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0),
                         border: Border(
-                            bottom: BorderSide(
-                          color: Colors.grey,
-                          width: 0.8,
-                        ))),
-                    child: TabBar(
-                      labelPadding: EdgeInsets.only(right: 0, left: 0),
-                      controller: _tabController,
-                      indicatorSize: TabBarIndicatorSize.label,
-                      isScrollable: true,
-                      indicatorPadding: const EdgeInsets.all(0),
-                      indicator: const UnderlineTabIndicator(
-                        borderSide: BorderSide(
-                          color: Colors.black,
-                          width: 2,
+                          bottom: BorderSide(
+                            color: Colors.grey,
+                            width: 0.8,
+                          ),
                         ),
-                        insets: EdgeInsets.only(left: 0, right: 14, top: 10),
                       ),
-                      labelColor: Colors.black,
-                      labelStyle: labelCategories,
-                      unselectedLabelColor: Colors.black38,
-                      unselectedLabelStyle: unselectedLabelCategories,
-                      tabs: List.generate(
-                          categories.length,
-                          (index) => Padding(
-                                padding: const EdgeInsets.only(
-                                    right: 16.0, bottom: 12.0),
-                                child: Text(categories[index].name),
-                              )),
+                      child: TabBar(
+                        labelPadding: EdgeInsets.only(right: 0, left: 0),
+                        controller: _tabController,
+                        indicatorSize: TabBarIndicatorSize.label,
+                        isScrollable: true,
+                        indicatorPadding: const EdgeInsets.all(0),
+                        indicator: const UnderlineTabIndicator(
+                          borderSide: BorderSide(
+                            color: Colors.black,
+                            width: 2,
+                          ),
+                          insets: EdgeInsets.only(left: 0, right: 14, top: 10),
+                        ),
+                        labelColor: Colors.black,
+                        labelStyle: labelCategories,
+                        unselectedLabelColor: Colors.black38,
+                        unselectedLabelStyle: unselectedLabelCategories,
+                        tabs: List.generate(
+                            categories.length,
+                            (index) => Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 16.0, bottom: 12.0),
+                                  child: Text(categories[index].name),
+                                )),
+                      ),
                     ),
                   ),
-                ),
-              )
-            ];
-          },
-          body: Container(
-            child: TabBarView(
-              controller: _tabController,
-              children: screens,
+                )
+              ];
+            },
+            body: Container(
+              child: TabBarView(
+                controller: _tabController,
+                children: screens,
+              ),
             ),
           ),
         ),
