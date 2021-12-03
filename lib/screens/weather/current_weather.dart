@@ -33,10 +33,10 @@ class _CurrentWeatherPageState extends State<CurrentWeatherPage>
   Widget build(BuildContext context) {
     return Scaffold(
         body: ListView(children: <Widget>[
-          currentWeatherViews(locations, location, this.context),
-          forecastViewsHourly(location),
-          forecastViewsDaily(location),
-        ]));
+      currentWeatherViews(locations, location, this.context),
+      forecastViewsHourly(location),
+      forecastViewsDaily(location),
+    ]));
   }
 }
 
@@ -118,51 +118,51 @@ Widget createAppBar(
               color: Colors.black,
               size: 24.0,
             ),
-            Expanded(
-                child: ListView.builder(
-                    padding: const EdgeInsets.all(8),
-                    itemCount: locations.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Column(
-                            children: <Widget>[
-                              SizedBox(
-                                height: 50,
-                                child: Center(
-                                  child: Text.rich(
+            ListView.builder(
+                padding: const EdgeInsets.all(8),
+                itemCount: locations.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: 50,
+                            child: Center(
+                              child: Text.rich(
+                                TextSpan(
+                                  children: <TextSpan>[
                                     TextSpan(
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                            text:
+                                        text:
                                             '${locations[index].city.capitalizeFirstOfEach}, ',
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 16)),
-                                        TextSpan(
-                                            text:
-                                            locations[index].country.capitalizeFirstOfEach,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.normal,
-                                                fontSize: 16)),
-                                      ],
-                                    ),
-                                  ),
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16)),
+                                    TextSpan(
+                                        text: locations[index]
+                                            .country
+                                            .capitalizeFirstOfEach,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 16)),
+                                  ],
                                 ),
                               ),
-                              const Divider(),
-                            ],
-                          ));
-                    })),
+                            ),
+                          ),
+                          const Divider(),
+                        ],
+                      ));
+                }),
           ]);
         },
       );
     },
     child: Container(
         padding:
-        const EdgeInsets.only(left: 20, top: 15, bottom: 15, right: 20),
+            const EdgeInsets.only(left: 20, top: 15, bottom: 15, right: 20),
         margin: const EdgeInsets.only(
             top: 35, left: 15.0, bottom: 15.0, right: 15.0),
         decoration: BoxDecoration(
@@ -184,8 +184,8 @@ Widget createAppBar(
                 children: <TextSpan>[
                   TextSpan(
                       text: '${location.city.capitalizeFirstOfEach}, ',
-                      style:
-                      const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 16)),
                   TextSpan(
                       text: location.country.capitalizeFirstOfEach,
                       style: const TextStyle(
@@ -228,17 +228,17 @@ Widget weatherDetailsBox(Weather _weather) {
               "Wind",
               textAlign: TextAlign.left,
               style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 12,
-              color: Colors.grey),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                  color: Colors.grey),
             ),
             Text(
               "${_weather.wind} km/h",
               textAlign: TextAlign.left,
               style: const TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 15,
-              color: Colors.black),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 15,
+                  color: Colors.black),
             )
           ],
         )),
@@ -249,17 +249,17 @@ Widget weatherDetailsBox(Weather _weather) {
               "Humidity",
               textAlign: TextAlign.left,
               style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 12,
-              color: Colors.grey),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                  color: Colors.grey),
             ),
             Text(
               "${_weather.humidity.toInt()}%",
               textAlign: TextAlign.left,
               style: const TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 15,
-              color: Colors.black),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 15,
+                  color: Colors.black),
             )
           ],
         )),
@@ -270,17 +270,17 @@ Widget weatherDetailsBox(Weather _weather) {
               "Pressure",
               textAlign: TextAlign.left,
               style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 12,
-              color: Colors.grey),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                  color: Colors.grey),
             ),
             Text(
               "${_weather.pressure} hPa",
               textAlign: TextAlign.left,
               style: const TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 15,
-              color: Colors.black),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 15,
+                  color: Colors.black),
             )
           ],
         ))
@@ -303,8 +303,8 @@ Widget weatherBox(Weather _weather) {
         padding: const EdgeInsets.all(15.0),
         margin: const EdgeInsets.all(15.0),
         height: 160.0,
-        decoration:
-            const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20))),
+        decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(20))),
         child: Row(
           children: [
             Expanded(
@@ -338,9 +338,9 @@ Widget weatherBox(Weather _weather) {
                 "${_weather.temp.toInt()}°",
                 textAlign: TextAlign.left,
                 style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 60,
-                color: Colors.black),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 60,
+                    color: Colors.black),
               ),
               Container(
                   margin: const EdgeInsets.all(0),
@@ -399,7 +399,8 @@ Widget hourlyBoxes(Forecast _forecast) {
                         color: Colors.grey.withOpacity(0.1),
                         spreadRadius: 2,
                         blurRadius: 2,
-                        offset: const Offset(0, 1), // changes position of shadow
+                        offset:
+                            const Offset(0, 1), // changes position of shadow
                       )
                     ]),
                 child: Column(children: [
@@ -435,33 +436,31 @@ String getDateFromTimestamp(int timestamp) {
 }
 
 Widget dailyBoxes(Forecast _forecast) {
-  return Expanded(
-      child: ListView.builder(
-          shrinkWrap: true,
-          physics: const ClampingScrollPhysics(),
-          padding: const EdgeInsets.only(left: 8, top: 0, bottom: 0, right: 8),
-          itemCount: _forecast.daily.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Container(
-                padding: const EdgeInsets.only(
-                    left: 10, top: 5, bottom: 5, right: 10),
-                margin: const EdgeInsets.all(5),
-                child: Row(children: [
-                  Expanded(
-                      child: Text(
-                    getDateFromTimestamp(_forecast.daily[index].dt),
-                    style: const TextStyle(fontSize: 14, color: Colors.black),
-                  )),
-                  Expanded(
-                      child: getWeatherIconSmall(_forecast.daily[index].icon)),
-                  Expanded(
-                      child: Text(
-                    "${_forecast.daily[index].high.toInt()}/${_forecast.daily[index].low.toInt()}",
-                    textAlign: TextAlign.right,
-                    style: const TextStyle(fontSize: 14, color: Colors.grey),
-                  )),
-                ]));
-          }));
+  return ListView.builder(
+      shrinkWrap: true,
+      physics: const ClampingScrollPhysics(),
+      padding: const EdgeInsets.only(left: 8, top: 0, bottom: 0, right: 8),
+      itemCount: _forecast.daily.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Container(
+            padding:
+                const EdgeInsets.only(left: 10, top: 5, bottom: 5, right: 10),
+            margin: const EdgeInsets.all(5),
+            child: Row(children: [
+              Expanded(
+                  child: Text(
+                getDateFromTimestamp(_forecast.daily[index].dt),
+                style: const TextStyle(fontSize: 14, color: Colors.black),
+              )),
+              Expanded(child: getWeatherIconSmall(_forecast.daily[index].icon)),
+              Expanded(
+                  child: Text(
+                "${_forecast.daily[index].high.toInt()}/${_forecast.daily[index].low.toInt()}",
+                textAlign: TextAlign.right,
+                style: const TextStyle(fontSize: 14, color: Colors.grey),
+              )),
+            ]));
+      });
 }
 
 class Clipper extends CustomClipper<Path> {

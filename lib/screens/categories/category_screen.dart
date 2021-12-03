@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:news_peek/model/article.dart';
 import 'package:news_peek/model/bookmark_db.dart';
 import 'package:news_peek/services/news.dart';
 import 'package:collection/collection.dart';
+import 'package:news_peek/utilities/fonts.dart';
 import '../news_card.dart';
 
 class CategoryPage extends StatefulWidget {
@@ -49,7 +51,38 @@ class _CategoryPageState extends State<CategoryPage>
             return const Center(child: CircularProgressIndicator());
           } else {
             if (snapshot.hasError) {
-              return const Center(child: Text('Cannot Load the Data'));
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      child: SvgPicture.asset(
+                        'images/no_data.svg',
+                        width: MediaQuery.of(context).size.width / 1.3,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      child: Center(
+                        child: Text(
+                          'No Data Found',
+                          style: headerTitle,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      child: Center(
+                        child: Text(
+                          'Check if your connected to the internet. If yes, there might be a problem with the API server',
+                          textAlign: TextAlign.center,
+                          style: subTitle,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
             } else {
               List<Article> articles = snapshot.data ?? [];
               return Scrollbar(
@@ -64,8 +97,8 @@ class _CategoryPageState extends State<CategoryPage>
                           const SizedBox(height: 10.0),
                       itemBuilder: (BuildContext context, int index) {
                         return NewsCard(
-                            article: articles[index + 3],
-                            isBookmarked: contains(articles[index + 3]));
+                            article: articles[index],
+                            isBookmarked: contains(articles[index]));
                       },
                     ),
                     const SizedBox(height: 10.0),

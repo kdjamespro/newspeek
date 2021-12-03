@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_peek/model/article.dart';
-import 'package:news_peek/model/bookmark_db.dart';
+import 'package:news_peek/screens/search_results.dart';
 import 'categories/category_screen.dart';
-import 'package:collection/collection.dart';
 
 import '../model/category.dart';
 import '../utilities/fonts.dart';
@@ -155,6 +153,16 @@ class _SearchState extends State<Search> with SingleTickerProviderStateMixin {
                         onPressed: _controller.clear,
                       ),
                     ),
+                    onSubmitted: (String entered) async {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return SearchResults(keyword: entered);
+                          },
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],

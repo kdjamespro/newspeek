@@ -9,10 +9,18 @@ class Weather {
   final double wind;
   final String icon;
 
-  Weather({required this.temp, required this.feelsLike, required this.low, required this.high, required this.description, required this.pressure, required this.humidity, required this.wind, required this.icon});
+  Weather(
+      {required this.temp,
+      required this.feelsLike,
+      required this.low,
+      required this.high,
+      required this.description,
+      required this.pressure,
+      required this.humidity,
+      required this.wind,
+      required this.icon});
 
   factory Weather.fromJson(Map<String, dynamic> json) {
-    print(json);
     return Weather(
       temp: json['main']['temp'].toDouble(),
       feelsLike: json['main']['feels_like'].toDouble(),
@@ -42,5 +50,3 @@ class Weather {
 // name: Calgary,
 // cod: 200
 // }
-
-

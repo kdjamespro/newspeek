@@ -38,7 +38,7 @@ class HeadlineCard extends StatelessWidget {
               margin: const EdgeInsets.all(10.0),
               child: Text(
                 article.title,
-                style: headerTitle,
+                style: headlineTitle,
               ),
             ),
           ),

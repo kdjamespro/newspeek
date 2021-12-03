@@ -7,6 +7,12 @@ final headerTitle = GoogleFonts.merriweather(
   fontWeight: FontWeight.bold,
 );
 
+final headlineTitle = GoogleFonts.montserrat(
+  color: Colors.black,
+  fontSize: 16,
+  fontWeight: FontWeight.bold,
+);
+
 final subTitle = GoogleFonts.openSans(
   color: Colors.grey.shade700,
   fontSize: 12,
