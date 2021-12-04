@@ -47,6 +47,8 @@ dependencies:
   share: ^2.0.4
   sqflite: ^2.0.0+4
   flutter_svg: ^1.0.0
+  flutter_spinkit: ^5.1.0
+  animated_splash_screen: ^1.1.0
 
 
 dev_dependencies:
@@ -80,6 +82,7 @@ flutter:
     - images/not_available.png
     - images/add_bookmark.svg
     - images/
+    - images/loading_splash.gif
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
