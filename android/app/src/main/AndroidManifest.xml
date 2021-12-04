@@ -7,7 +7,7 @@
         </intent>
     </queries>
    <application
-        android:label="news_peek"
+        android:label="Newspeek"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
