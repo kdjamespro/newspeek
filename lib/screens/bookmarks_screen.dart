@@ -67,11 +67,14 @@ class _BookmarksState extends State<Bookmarks> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
-                                  margin: EdgeInsets.only(top: 60),
-                                  child: SvgPicture.asset(
-                                    'images/add_bookmark.svg',
-                                    width:
-                                        MediaQuery.of(context).size.width / 1.3,
+                                  margin: EdgeInsets.only(top: 150),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(14.0),
+                                    child: SvgPicture.asset(
+                                      'images/add_bookmark.svg',
+                                      width: MediaQuery.of(context).size.width /
+                                          1.7,
+                                    ),
                                   ),
                                 ),
                                 Container(
@@ -87,7 +90,7 @@ class _BookmarksState extends State<Bookmarks> {
                                   margin: EdgeInsets.only(top: 10),
                                   child: Center(
                                     child: Text(
-                                      'Don\'t forget the save articles you like or want to read later',
+                                      'Don\'t forget to save the articles \nyou like or want to read later',
                                       textAlign: TextAlign.center,
                                       style: subTitle,
                                     ),

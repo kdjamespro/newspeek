@@ -9,6 +9,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:news_peek/services/news.dart';
 import 'package:news_peek/utilities/fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 List images = ['images/test0.jpg', 'images/test1.jpg', 'images/test2.jpg'];
 
@@ -54,7 +55,12 @@ class _MainScreenState extends State<MainScreen>
           builder:
               (BuildContext context, AsyncSnapshot<List<Article>> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(
+                child: SpinKitFoldingCube(
+                  size: 60,
+                  color: Colors.red,
+                ),
+              );
             } else {
               if (snapshot.hasError) {
                 return Center(
@@ -62,13 +68,14 @@ class _MainScreenState extends State<MainScreen>
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
+                        margin: EdgeInsets.only(top: 40),
                         child: SvgPicture.asset(
                           'images/no_data.svg',
-                          width: MediaQuery.of(context).size.width / 1.3,
+                          width: MediaQuery.of(context).size.width / 1.9,
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 10),
+                        margin: EdgeInsets.only(top: 35),
                         child: Center(
                           child: Text(
                             'No Data Found',
@@ -79,10 +86,14 @@ class _MainScreenState extends State<MainScreen>
                       Container(
                         margin: EdgeInsets.only(top: 10),
                         child: Center(
-                          child: Text(
-                            'Check if your connected to the internet. If yes, there might be a problem with the API server',
-                            textAlign: TextAlign.center,
-                            style: subTitle,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 25),
+                            child: Text(
+                              'Check if your connected to the internet. If yes, there might be a problem on the server',
+                              textAlign: TextAlign.center,
+                              style: subTitle,
+                            ),
                           ),
                         ),
                       ),

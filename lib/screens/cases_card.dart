@@ -19,47 +19,52 @@ class CasesCard extends StatelessWidget {
         vertical: 5.0,
       ),
       elevation: 4,
-      child: Container(
-        padding: const EdgeInsets.all(15.0),
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            top,
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                numbers(
-                  cases: formatter.format(cases.cases),
-                  title: 'Total Cases',
-                  style: totalCasesFig,
-                  newCases: formatter.format(cases.todayCases),
-                  newStyle: totalCasesNewFig,
-                ),
-                Spacer(),
-                numbers(
-                  cases: formatter.format(cases.deaths),
-                  title: 'Deaths',
-                  style: deathsFig,
-                  newCases: formatter.format(cases.todayDeaths),
-                  newStyle: deathsNewFig,
-                ),
-                Spacer(),
-                numbers(
-                  cases: formatter.format(cases.recovered),
-                  title: 'Recovered',
-                  style: recoveredFig,
-                  newCases: formatter.format(cases.todayRecovered),
-                  newStyle: recoveredNewFig,
-                ),
-              ],
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(5, 14, 5, 5),
+        child: Container(
+          padding: const EdgeInsets.all(15.0),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
             ),
-            chart ?? const SizedBox(),
-          ],
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              top,
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  numbers(
+                    cases: formatter.format(cases.cases),
+                    title: 'Total Cases',
+                    style: totalCasesFig,
+                    newCases: formatter.format(cases.todayCases),
+                    newStyle: totalCasesNewFig,
+                  ),
+                  Spacer(),
+                  numbers(
+                    cases: formatter.format(cases.deaths),
+                    title: 'Deaths',
+                    style: deathsFig,
+                    newCases: formatter.format(cases.todayDeaths),
+                    newStyle: deathsNewFig,
+                  ),
+                  Spacer(),
+                  numbers(
+                    cases: formatter.format(cases.recovered),
+                    title: 'Recovered',
+                    style: recoveredFig,
+                    newCases: formatter.format(cases.todayRecovered),
+                    newStyle: recoveredNewFig,
+                  ),
+                ],
+              ),
+              chart ?? const SizedBox(),
+            ],
+          ),
         ),
       ),
     );

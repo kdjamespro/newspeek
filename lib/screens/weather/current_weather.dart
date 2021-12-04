@@ -31,12 +31,15 @@ class _CurrentWeatherPageState extends State<CurrentWeatherPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: ListView(children: <Widget>[
-      currentWeatherViews(locations, location, this.context),
-      forecastViewsHourly(location),
-      forecastViewsDaily(location),
-    ]));
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+          body: ListView(children: <Widget>[
+        currentWeatherViews(locations, location, this.context),
+        forecastViewsHourly(location),
+        forecastViewsDaily(location),
+      ])),
+    );
   }
 }
 
@@ -232,27 +235,27 @@ Widget weatherBox(Weather _weather) {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      getWeatherIcon(_weather.icon),
-                      Container(
-                          margin: const EdgeInsets.all(5.0),
-                          child: Text(
-                            _weather.description.capitalizeFirstOfEach,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.normal,
-                                fontSize: 16,
-                                color: Colors.black),
-                          )),
-                      Container(
-                          margin: const EdgeInsets.all(5.0),
-                          child: Text(
-                            "H:${_weather.high.toInt()}° L:${_weather.low.toInt()}°",
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.normal,
-                                fontSize: 13,
-                                color: Colors.black),
-                          )),
-                    ])),
+                  getWeatherIcon(_weather.icon),
+                  Container(
+                      margin: const EdgeInsets.all(5.0),
+                      child: Text(
+                        _weather.description.capitalizeFirstOfEach,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 16,
+                            color: Colors.black),
+                      )),
+                  Container(
+                      margin: const EdgeInsets.all(5.0),
+                      child: Text(
+                        "H:${_weather.high.toInt()}° L:${_weather.low.toInt()}°",
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 13,
+                            color: Colors.black),
+                      )),
+                ])),
             Column(children: <Widget>[
               Text(
                 "${_weather.temp.toInt()}°",

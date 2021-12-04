@@ -137,6 +137,9 @@ class _SearchState extends State<Search> with SingleTickerProviderStateMixin {
   Widget searchCard() => Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
           elevation: 2.0,
           child: Padding(
             padding: const EdgeInsets.all(8.0),

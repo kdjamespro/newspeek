@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:news_peek/model/article.dart';
 import 'package:news_peek/model/bookmark_db.dart';
@@ -60,7 +61,12 @@ class _SearchResultsState extends State<SearchResults> {
           builder:
               (BuildContext context, AsyncSnapshot<List<Article>> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(
+                child: SpinKitFoldingCube(
+                  size: 60,
+                  color: Colors.green,
+                ),
+              );
             } else {
               if (snapshot.hasError) {
                 return const Center(child: Text('Cannot Load the Data'));

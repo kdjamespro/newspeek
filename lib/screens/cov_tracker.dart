@@ -63,7 +63,11 @@ class _Cov_TrackerState extends State<Cov_Tracker>
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
-                  return const Center(child: Text('No data'));
+                  return const Center(
+                      child: Text(
+                    'No data',
+                    textAlign: TextAlign.center,
+                  ));
                 } else {
                   CovidCases world = snapshot.data ??
                       CovidCases(
@@ -77,29 +81,32 @@ class _Cov_TrackerState extends State<Cov_Tracker>
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Container(
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 5.0, horizontal: 15),
-                        padding: const EdgeInsets.all(15.0),
-                        height: 90,
-                        decoration: const BoxDecoration(
-                          color: Color(0XFFdd1f8a),
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 5),
-                            Text(
-                              'COVID-19 Cases Live Updates',
-                              style: covidTitle,
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              'Last Update: ${world.updated}',
-                              style: covidSubheading,
-                            ),
-                          ],
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(5, 14, 5, 5),
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 5.0, horizontal: 15),
+                          padding: const EdgeInsets.all(15.0),
+                          height: 90,
+                          decoration: const BoxDecoration(
+                            color: Color(0XFFdd1f8a),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(height: 5),
+                              Text(
+                                'COVID-19 Cases Live Updates',
+                                style: covidTitle,
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                'Last Update: ${world.updated}',
+                                style: covidSubheading,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       CasesCard(

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:news_peek/model/article.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:news_peek/model/bookmark_db.dart';
@@ -86,8 +87,12 @@ class _NewsCardState extends State<NewsCard> {
                                   image: imageProvider, fit: BoxFit.cover),
                             ),
                           ),
-                          placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
+                          placeholder: (context, url) => Center(
+                            child: SpinKitFoldingCube(
+                              size: 60,
+                              color: Colors.green,
+                            ),
+                          ),
                           errorWidget: (context, url, error) =>
                               const Icon(Icons.error),
                         ),

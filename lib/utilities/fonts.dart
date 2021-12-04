@@ -15,7 +15,7 @@ final headlineTitle = GoogleFonts.montserrat(
 
 final subTitle = GoogleFonts.openSans(
   color: Colors.grey.shade700,
-  fontSize: 12,
+  fontSize: 14,
   fontWeight: FontWeight.normal,
 );
 
