@@ -139,4 +139,4 @@ coverage/
 !/dev/ci/**/Gemfile.lock
 
 #
-/lib/secrets.dart
+/lib/services/secrets.dart
