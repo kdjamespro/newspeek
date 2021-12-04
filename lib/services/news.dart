@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import '../services/network.dart';
-import 'secrets.dart';
+import 'package:news_peek/secrets.dart';
 import '../model/article.dart';
 
 const String apiKey = newsAPIKey;
